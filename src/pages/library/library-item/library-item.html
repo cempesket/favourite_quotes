@@ -1,0 +1,29 @@
+<!--
+  Generated template for the LibraryItemPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+
+    <ion-title text-center><span><ion-icon name={{categoryIcon}}></ion-icon></span> {{categoryName | uppercase}}
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="bg" padding>
+   <ion-card class="bg" *ngFor="let quote of quotes">
+     <ion-card-content>{{quote.text}}</ion-card-content>
+     <p class="author">{{quote.person}}</p>
+     <ion-row>
+       <ion-col text-right>
+         <button clear small ion-button color="primary" (click)="onSelectQuote(quote)">Favourite</button>
+       </ion-col>
+     </ion-row>
+
+   </ion-card>
+</ion-content>
