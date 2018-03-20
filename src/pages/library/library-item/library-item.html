@@ -21,7 +21,9 @@
      <p class="author">{{quote.person}}</p>
      <ion-row>
        <ion-col text-right>
-         <button clear small ion-button color="primary" (click)="onSelectQuote(quote)">Favourite</button>
+         <button *ngIf="!isFavourite(quote)" clear small ion-button color="primary" (click)="onSelectQuote(quote)">Favourite</button>
+         <button *ngIf="isFavourite(quote)" clear small ion-button color="danger" (click)="onRemoveFromQuotes(quote)">Unfavourite</button>
+
        </ion-col>
      </ion-row>
 

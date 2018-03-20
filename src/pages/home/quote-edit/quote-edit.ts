@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {IonicPage, Modal, ModalController, NavController, NavParams, ViewController} from 'ionic-angular';
+import {Component} from '@angular/core';
+import {IonicPage,NavParams, ViewController} from 'ionic-angular';
+import {QuotesService} from "../../../services/quotes.service";
 
 /**
  * Generated class for the QuoteEditPage page.
@@ -13,21 +14,26 @@ import {IonicPage, Modal, ModalController, NavController, NavParams, ViewControl
   selector: 'page-quote-edit',
   templateUrl: 'quote-edit.html',
 })
-export class QuoteEditPage implements OnInit {
+export class QuoteEditPage  {
   author;
   text;
 
-  constructor(private navParams: NavParams, private viewCtrl: ViewController) {
+  constructor(private navParams: NavParams, private viewCtrl: ViewController, private quotesService: QuotesService) {
   }
 
-  ngOnInit() {
+  ionViewDidEnter() {
     this.text = this.navParams.get('text');
     this.author = this.navParams.get('person')
-
   }
 
   onClose() {
     this.viewCtrl.dismiss().catch()
+  }
+
+  onUnfavourite() {
+    this.quotesService.removeFromFavourite(this.navParams.data);
+    this.viewCtrl.dismiss().catch()
+
   }
 
 

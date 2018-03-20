@@ -13,6 +13,14 @@ import {MenuPage} from "../pages/menu/menu";
 import {QuoteEditPage} from "../pages/home/quote-edit/quote-edit";
 import {TabsPage} from "../pages/tabs/tabs";
 import {QuotesService} from "../services/quotes.service";
+import {SettingsService} from "../services/settings.service";
+import {AlbumPage} from "../pages/album/album";
+import {Camera} from "@ionic-native/camera";
+import {AlbumService} from "../services/album.service";
+import {AlbumCreatePage} from "../pages/album/album-create/album-create";
+import {SortPipe} from "../pipes/sort";
+import {TimeDifPipe} from "../pipes/time.pipe";
+import {DoubleTapDirective} from "../directives/double-tap";
 
 @NgModule({
   declarations: [
@@ -23,7 +31,12 @@ import {QuotesService} from "../services/quotes.service";
     SettingsPage,
     MenuPage,
     QuoteEditPage,
-    TabsPage
+    TabsPage,
+    AlbumPage,
+    AlbumCreatePage,
+    SortPipe,
+    TimeDifPipe,
+    DoubleTapDirective
   ],
   imports: [
     BrowserModule,
@@ -38,13 +51,18 @@ import {QuotesService} from "../services/quotes.service";
     SettingsPage,
     MenuPage,
     QuoteEditPage,
-    TabsPage
+    TabsPage,
+    AlbumPage,
+    AlbumCreatePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     QuotesService,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    SettingsService,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Camera,
+    AlbumService
   ]
 })
 export class AppModule {

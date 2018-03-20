@@ -3,13 +3,7 @@ import {Subject} from "rxjs/Subject";
 
 export class QuotesService {
 
-  private favouriteQuotes: Quote[] = [{
-    id: '1',
-    person: 'Theodore Roosevelt',
-    text: 'Believe you can and you\'re halfway there'
-  }];
-
-  quoteSubject: Subject<Quote[]>;
+  private favouriteQuotes: Quote[] = [];
 
   getFavouritedQuotes() {
     return this.favouriteQuotes.slice();
@@ -20,13 +14,14 @@ export class QuotesService {
   }
 
   removeFromFavourite(quote: Quote) {
+    console.log(quote);
     this.favouriteQuotes.splice(this.favouriteQuotes.findIndex((quoteEl: Quote) => {
       return quote.id == quoteEl.id
-    }),1)
+    }),1);
+    console.log(this.favouriteQuotes)
   }
 
   isFavourited(quote: Quote): boolean {
-    this.quoteSubject.next();
     return !!(this.favouriteQuotes.find((quoteEl: Quote) => {
       return quote.id == quoteEl.id;
     }))

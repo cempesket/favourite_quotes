@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {Quote} from "../../../data/quotes.interface";
-import {QuoteCategory} from "../../../data/quote-category.interface";
 import {QuotesService} from "../../../services/quotes.service";
 
 
@@ -15,7 +14,7 @@ export class LibraryItemPage implements OnInit {
   categoryName: string;
   categoryIcon: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtr: AlertController, private quotesService: QuotesService) {
+  constructor(public navParams: NavParams, private alertCtr: AlertController, private quotesService: QuotesService) {
   }
 
   ngOnInit() {
@@ -44,6 +43,32 @@ export class LibraryItemPage implements OnInit {
 
     });
     alert.present().catch();
+  }
+
+  onRemoveFromQuotes(quote: Quote) {
+    const alert = this.alertCtr.create({
+      title: 'Remove favourite',
+      subTitle: 'Are you sure?',
+      message: 'Are you sure you want to remove quote?',
+      buttons: [{
+        text: 'Ok',
+        handler: () => {
+          this.quotesService.removeFromFavourite(quote);
+        }
+      },
+        {
+          text: 'Cancel',
+          handler: () => {
+          }
+        }],
+      enableBackdropDismiss: false
+
+    });
+    alert.present().catch();
+  }
+
+  isFavourite(quote: Quote): boolean {
+    return this.quotesService.isFavourited(quote);
   }
 
 }

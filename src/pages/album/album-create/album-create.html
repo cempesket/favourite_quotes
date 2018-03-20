@@ -1,0 +1,22 @@
+<ion-content text-center padding>
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <ion-list>
+      <ion-item>
+        <img [src]="data.imageData"/>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>Title</ion-label>
+        <ion-input type="text" name="title" ngModel required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>Description</ion-label>
+        <ion-input type="text" name="description" ngModel></ion-input>
+      </ion-item>
+
+
+    </ion-list>
+    <button [disabled]="f.invalid" ion-button block type="submit">OK</button>
+  </form>
+
+
+</ion-content>
